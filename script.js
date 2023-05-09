@@ -52,19 +52,4 @@ function addBookToLibrary(event) {
 
   modal.style.display = "none";
   overlay.style.display = "none";
-
-  const deleteButton = document.createElement("button");
-  deleteButton.innerHTML =
-    '<span class="close-btn"><i data-feather="x-circle"></i></span>';
-  deleteButton.classList.add("delete-btn");
-
-  card.appendChild(deleteButton);
-}
-
-function deleteCheck(e) {
-  const item = e.target;
-  if (item.classList[0] === "delete-btn") {
-    const card = item.parentElement;
-    card.remove();
-  }
 }
