@@ -33,7 +33,7 @@ ul {
 }
 
 .card-wrapper {
-  display: flex;
+  display: grid;
   gap: 24px;
 }
 
