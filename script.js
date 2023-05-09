@@ -11,6 +11,7 @@ const openModal = document.querySelector(".open-modal");
 const modal = document.querySelector(".modal");
 const closeBtn = document.querySelector(".close-btn");
 const overlay = document.querySelector(".overlay");
+const myForm = document.querySelector("form");
 
 //EVENT LISTENERS
 addBook.addEventListener("click", addBookToLibrary);
