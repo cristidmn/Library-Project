@@ -11,7 +11,7 @@ const openModal = document.querySelector(".open-modal");
 const modal = document.querySelector(".modal");
 const closeBtn = document.querySelector(".close-btn");
 const overlay = document.querySelector(".overlay");
-const myForm = document.querySelector("form");
+const form = document.querySelector("form");
 
 //EVENT LISTENERS
 addBook.addEventListener("click", addBookToLibrary);
@@ -27,18 +27,6 @@ function modalCloser() {
   modal.style.display = "none";
   overlay.style.display = "none";
 }
-
-let myLibrary = [
-  "I will teach you to be rich",
-  "Subtle art of not giving a fuck",
-  "Alice in Wonderland",
-];
-
-function Book() {
-  // the constructor...
-}
-
-function addBookModal() {}
 
 function addBookToLibrary(event) {
   event.preventDefault();
@@ -64,11 +52,19 @@ function addBookToLibrary(event) {
 
   modal.style.display = "none";
   overlay.style.display = "none";
+
+  const deleteButton = document.createElement("button");
+  deleteButton.innerHTML =
+    '<span class="close-btn"><i data-feather="x-circle"></i></span>';
+  deleteButton.classList.add("delete-btn");
+
+  card.appendChild(deleteButton);
 }
 
-function loopArray(item) {
-  for (const item of myLibrary);
-  console.log(item);
+function deleteCheck(e) {
+  const item = e.target;
+  if (item.classList[0] === "delete-btn") {
+    const card = item.parentElement;
+    card.remove();
+  }
 }
-
-loopArray(myLibrary);
