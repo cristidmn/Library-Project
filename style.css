@@ -1,0 +1,118 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 960px;
+}
+
+body {
+  font-family: Inter;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 48px 0;
+}
+
+.open-modal,
+.submit-btn {
+  border: none;
+  border-radius: 8px;
+  background-color: #4fabed;
+  color: white;
+  padding: 13px 24px;
+}
+
+ul {
+  list-style: none;
+}
+
+.card-wrapper {
+  display: flex;
+  gap: 24px;
+}
+
+.card {
+  background-color: #e9edef;
+  padding: 32px;
+  border-radius: 8px;
+}
+
+.card .title {
+  margin-bottom: 8px;
+}
+
+.card .author {
+  color: #545454;
+  margin-bottom: 8px;
+}
+
+.modal {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  padding: 32px 24px;
+  border-radius: 16px;
+  width: 500px;
+  box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.14);
+  z-index: 50;
+}
+
+.overlay {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.modal-header i {
+  width: 100px;
+  height: 100px;
+  color: black;
+}
+
+.modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.modal form .input-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.modal form label {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.modal form .input-field input {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid rgb(199, 204, 215);
+}
+
+.modal form .input-field input::placeholder {
+  font-weight: 400;
+  opacity: 0.5;
+  color: rgb(157, 153, 169);
+}
