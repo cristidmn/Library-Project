@@ -4,9 +4,6 @@
 
 const addBook = document.querySelector(".submit-btn");
 const cardWrapper = document.querySelector(".card-wrapper");
-const inputTitle = document.getElementById("bookTitle");
-const inputAuthor = document.getElementById("bookAuthor");
-const inputYear = document.getElementById("bookYear");
 const openModal = document.querySelector(".open-modal");
 const modal = document.querySelector(".modal");
 const closeBtn = document.querySelector(".close-btn");
@@ -14,7 +11,7 @@ const overlay = document.querySelector(".overlay");
 const form = document.querySelector("form");
 
 //EVENT LISTENERS
-addBook.addEventListener("click", addBookToLibrary);
+// addBook.addEventListener("click", addBookToLibrary);
 openModal.addEventListener("click", modalOpener);
 closeBtn.addEventListener("click", modalCloser);
 
@@ -28,9 +25,19 @@ function modalCloser() {
   overlay.style.display = "none";
 }
 
-function addBookToLibrary(e) {
-  e.preventDefault();
-  //create a div with class card and add it to the cardWrapper
+function deleteBook(e) {
+  const item = e.target;
+  if (item.classList[0] === "delete-btn") {
+    const card = item.parentElement;
+    card.remove();
+  }
+}
+
+function addBookToLibrary({
+  bookTitle: bookTitleValue,
+  bookAuthor: bookAuthorValue,
+  bookYear: bookYearValue,
+}) {
   const card = document.createElement("div");
   card.classList.add("card");
   cardWrapper.appendChild(card);
@@ -38,17 +45,17 @@ function addBookToLibrary(e) {
   const bookTitle = document.createElement("h3");
   bookTitle.classList.add("title");
   card.appendChild(bookTitle);
-  bookTitle.innerText = inputTitle.value;
+  bookTitle.innerText = bookTitleValue;
 
   const bookAuthor = document.createElement("p");
   bookAuthor.classList.add("author");
   card.appendChild(bookAuthor);
-  bookAuthor.innerText = inputAuthor.value;
+  bookAuthor.innerText = bookAuthorValue;
 
   const bookYear = document.createElement("p");
   bookYear.classList.add("year");
   card.appendChild(bookYear);
-  bookYear.innerText = inputYear.value;
+  bookYear.innerText = bookYearValue;
 
   modal.style.display = "none";
   overlay.style.display = "none";
@@ -59,27 +66,30 @@ function addBookToLibrary(e) {
   deleteBtn.innerHTML = "Delete";
 
   deleteBtn.addEventListener("click", deleteBook);
+}
 
-  function deleteBook(e) {
-    const item = e.target;
-    if (item.classList[0] === "delete-btn") {
-      const card = item.parentElement;
-      card.remove();
-    }
-  }
+function checkValidation(e) {
+  e.preventDefault();
 
-  form.addEventListener("submit", checkValidation);
+  const book = {};
 
-  function checkValidation(e) {
-    const formFields = form.elements;
-    // Loop through all form fields to check if they are filled
-    for (let i = 0; i < formFields.length; i++) {
-      const field = formFields[i];
-      if (field.value === "") {
-        alert("Please fill out all fields.");
-        event.preventDefault();
-        return;
-      }
-    }
+  const fields = [...e.target].filter((item) => item.type === "text");
+
+  const ifFormFilled = fields.some((field) => field !== "");
+
+  if (ifFormFilled) {
+    fields.forEach((input) => {
+      book[input.id] = input.value;
+    });
+
+    fields.forEach((input) => {
+      book[input.id] = input.value;
+    });
+
+    addBookToLibrary(book);
+  } else {
+    alert("Please fill out all fields.");
   }
 }
+
+form.addEventListener("submit", checkValidation);
