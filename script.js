@@ -28,8 +28,8 @@ function modalCloser() {
   overlay.style.display = "none";
 }
 
-function addBookToLibrary(event) {
-  event.preventDefault();
+function addBookToLibrary(e) {
+  e.preventDefault();
   //create a div with class card and add it to the cardWrapper
   const card = document.createElement("div");
   card.classList.add("card");
@@ -52,4 +52,34 @@ function addBookToLibrary(event) {
 
   modal.style.display = "none";
   overlay.style.display = "none";
+
+  const deleteBtn = document.createElement("button");
+  deleteBtn.classList.add("delete-btn");
+  card.appendChild(deleteBtn);
+  deleteBtn.innerHTML = "Delete";
+
+  deleteBtn.addEventListener("click", deleteBook);
+
+  function deleteBook(e) {
+    const item = e.target;
+    if (item.classList[0] === "delete-btn") {
+      const card = item.parentElement;
+      card.remove();
+    }
+  }
+
+  form.addEventListener("submit", checkValidation);
+
+  function checkValidation(e) {
+    const formFields = form.elements;
+    // Loop through all form fields to check if they are filled
+    for (let i = 0; i < formFields.length; i++) {
+      const field = formFields[i];
+      if (field.value === "") {
+        alert("Please fill out all fields.");
+        event.preventDefault();
+        return;
+      }
+    }
+  }
 }

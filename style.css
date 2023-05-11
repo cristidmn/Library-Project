@@ -20,12 +20,17 @@ body {
 }
 
 .open-modal,
-.submit-btn {
+.submit-btn,
+.delete-btn {
   border: none;
   border-radius: 8px;
   background-color: #4fabed;
   color: white;
   padding: 13px 24px;
+}
+
+.delete-btn {
+  background-color: red;
 }
 
 ul {
