@@ -16,7 +16,7 @@ const form = document.querySelector("form");
 //EVENT LISTENERS
 openModal.addEventListener("click", modalOpener);
 closeBtn.addEventListener("click", modalCloser);
-form.addEventListener("submit", checkValidation);
+form.addEventListener("submit", addBookToLibrary);
 
 function modalOpener() {
   modal.style.display = "block";
@@ -65,19 +65,6 @@ function addBookToLibrary(e) {
     if (item.classList[0] === "delete-btn") {
       const card = item.parentElement;
       card.remove();
-    }
-  }
-
-  function checkValidation(event) {
-    const formFields = form.elements;
-    // Loop through all form fields to check if they are filled
-    for (let i = 0; i < formFields.length; i++) {
-      const field = formFields[i];
-      if (field.value === "") {
-        event.preventDefault();
-        alert("Please fill out all fields.");
-        return;
-      }
     }
   }
 }
