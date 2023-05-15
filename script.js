@@ -14,9 +14,9 @@ const overlay = document.querySelector(".overlay");
 const form = document.querySelector("form");
 
 //EVENT LISTENERS
-addBook.addEventListener("click", addBookToLibrary);
 openModal.addEventListener("click", modalOpener);
 closeBtn.addEventListener("click", modalCloser);
+form.addEventListener("submit", checkValidation);
 
 function modalOpener() {
   modal.style.display = "block";
@@ -68,16 +68,14 @@ function addBookToLibrary(e) {
     }
   }
 
-  form.addEventListener("submit", checkValidation);
-
-  function checkValidation(e) {
+  function checkValidation(event) {
     const formFields = form.elements;
     // Loop through all form fields to check if they are filled
     for (let i = 0; i < formFields.length; i++) {
       const field = formFields[i];
       if (field.value === "") {
-        alert("Please fill out all fields.");
         event.preventDefault();
+        alert("Please fill out all fields.");
         return;
       }
     }
