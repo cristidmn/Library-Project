@@ -28,6 +28,15 @@ function modalCloser() {
   overlay.style.display = "none";
 }
 
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape") {
+    const isModalOpen = modal.style.display === "block";
+    if (isModalOpen) {
+      modalCloser();
+    }
+  }
+});
+
 function addBookToLibrary(e) {
   e.preventDefault();
   //create a div with class card and add it to the cardWrapper
